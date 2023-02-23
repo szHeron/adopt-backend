@@ -11,34 +11,25 @@ datasource db {
 }
 
 model User {
-  id         String   @id @default(cuid())
-  name       String
-  email      String   @unique
-  ownAnimals Animal[]
-  Post       Post[]
+  id            String   @id @default(cuid())
+  name          String
+  email         String   @unique
+  avatar        String?
+  numberContact String?
+  ownAnimals    Animal[]
 }
 
 model Animal {
   id            String   @id @default(cuid())
   name          String
   race          String
+  type          String
   gender        Int
-  age           Int?
+  age           String
+  image         String
+  address       String
   adoptedStatus Boolean  @default(false)
   createdAt     DateTime @default(now())
   userId        String
   createdBy     User     @relation(fields: [userId], references: [id])
-  Post          Post[]
-}
-
-model Post {
-  id             String   @id @default(cuid())
-  title          String
-  description    String
-  createdAt      DateTime @default(now())
-  address        String
-  userId         String
-  animalId       String
-  createdBy      User     @relation(fields: [userId], references: [id])
-  animalForAdopt Animal   @relation(fields: [animalId], references: [id])
 }

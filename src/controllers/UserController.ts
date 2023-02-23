@@ -3,8 +3,24 @@ import { Request, Response } from 'express';
 import { prisma } from '../db/prisma';
 
 module.exports = {
-    async create(req: Request, res: Response){
+    async getUser(req: Request, res: Response){
         const userInfoSchema = z.object({
+            id: z.string()
+        })
+        const userInfo = userInfoSchema.parse(req.params);
+
+        let user = await prisma.user.findUnique({
+            where:{
+                id: userInfo.id
+            }
+        })
+
+        return res.json(user).status(200)
+    },
+
+    async register(req: Request, res: Response){
+        const userInfoSchema = z.object({
+            id: z.string(),
             email: z.string().email(),
             name: z.string()
         })
@@ -17,11 +33,15 @@ module.exports = {
         if(!user){
             user = await prisma.user.create({
                 data: {
+                    id: userInfo.id,
                     name: userInfo.name,
                     email: userInfo.email
                 }
             })
+        }else{
+            return res.json({message: "Ja existe usuario"}).status(400)    
         }
+
         return res.json(userInfo).status(200)
     },
 
