@@ -10,9 +10,9 @@ routes.post('/users/register', tokenController.verifyToken, UserController.regis
 routes.put('/users/:id', tokenController.verifyToken, UserController.update);
 routes.delete('/users/:id', tokenController.verifyToken, UserController.delete);
 
-//Controladores do post
-routes.post('/animal', AnimalController.create);
-routes.delete('/animal/:id', AnimalController.delete);
-routes.get('/animal', AnimalController.getAnimals);
+//Controladores dos animais
+routes.post('/animal', tokenController.verifyToken, AnimalController.create);
+routes.delete('/animal/:id', tokenController.verifyToken, AnimalController.delete);
+routes.get('/animal', tokenController.verifyToken, AnimalController.getAnimals);
 
 module.exports = routes;
