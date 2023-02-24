@@ -41,7 +41,15 @@ module.exports = {
     async getAnimals(req: Request, res: Response){
         let animals: Array<Animal> = []
         if(!Object.keys(req.query).length){
-            animals = await prisma.animal.findMany({include: { createdBy: true }});
+            animals = await prisma.animal.findMany(
+                {
+                    include: 
+                    { 
+                        createdBy: true,
+                        Favorites: true
+                    }
+                }
+            );
         }else{
             const name = typeof req.query.name === "string"?req.query.name:undefined
             const age =  typeof req.query.age === "string"?req.query.age:undefined
@@ -59,7 +67,8 @@ module.exports = {
                     gender: gender
                 },
                 include: { 
-                    createdBy: true 
+                    createdBy: true,
+                    Favorites: true
                 }
             });
             

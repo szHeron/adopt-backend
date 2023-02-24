@@ -2,6 +2,7 @@ import express from 'express';
 const routes = express.Router();
 const UserController = require('./controllers/UserController')
 const AnimalController = require('./controllers/AnimalController')
+const FavoriteController = require('./controllers/FavoriteController')
 const tokenController = require('./controllers/VerifyToken')
 
 //Controladores de usuario
@@ -14,5 +15,10 @@ routes.delete('/users/:id', tokenController.verifyToken, UserController.delete);
 routes.post('/animal', tokenController.verifyToken, AnimalController.create);
 routes.delete('/animal/:id', tokenController.verifyToken, AnimalController.delete);
 routes.get('/animal', tokenController.verifyToken, AnimalController.getAnimals);
+
+//Controladores dos favorritos
+routes.post('/favorite', tokenController.verifyToken, FavoriteController.create);
+routes.delete('/favorite/:id', tokenController.verifyToken, FavoriteController.delete);
+routes.get('/favorite', tokenController.verifyToken, FavoriteController.getFavorites);
 
 module.exports = routes;
