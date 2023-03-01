@@ -4,6 +4,7 @@ const UserController = require('./controllers/UserController')
 const AnimalController = require('./controllers/AnimalController')
 const FavoriteController = require('./controllers/FavoriteController')
 const tokenController = require('./controllers/VerifyToken')
+const imageController = require('./controllers/ImageController')
 
 //Controladores de usuario
 routes.get('/users/:id', tokenController.verifyToken, UserController.getUser);
@@ -20,5 +21,7 @@ routes.get('/animal', tokenController.verifyToken, AnimalController.getAnimals);
 routes.post('/favorite', tokenController.verifyToken, FavoriteController.create);
 routes.delete('/favorite/:id', tokenController.verifyToken, FavoriteController.delete);
 routes.get('/favorite', tokenController.verifyToken, FavoriteController.getFavorites);
+
+routes.post('/uploadImage', tokenController.verifyToken, imageController.uploadNewImage);
 
 module.exports = routes;
