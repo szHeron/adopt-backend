@@ -21,19 +21,19 @@ model User {
 }
 
 model Animal {
-  id            String      @id @default(cuid())
-  name          String
-  race          String
-  type          String
-  gender        Int
-  age           String
-  image         String
-  address       String
-  adoptedStatus Boolean     @default(false)
-  createdAt     DateTime    @default(now())
-  userId        String
-  createdBy     User        @relation(fields: [userId], references: [id])
-  Favorites     Favorites[]
+  id        String      @id @default(cuid())
+  name      String
+  race      String
+  type      String
+  gender    String
+  age       String
+  image     String
+  city      String
+  state     String
+  createdAt DateTime    @default(now())
+  userId    String
+  createdBy User        @relation(fields: [userId], references: [id])
+  Favorites Favorites[]
 }
 
 model Favorites {

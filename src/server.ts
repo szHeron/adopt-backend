@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const routesApp = require('./routes')
 const verifyToken = require('./controllers/VerifyToken')
+
 require('dotenv').config()
 
 const app = express()

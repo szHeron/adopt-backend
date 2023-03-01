@@ -35,7 +35,7 @@ module.exports = {
         const favoriteInfoSchema = z.object({
             userId: z.string()
         })
-        const favoriteInfo = favoriteInfoSchema.parse(req.body);
+        const favoriteInfo = favoriteInfoSchema.parse(req.query);
         let favorites = await prisma.favorites.findMany(
             {
                 where: {

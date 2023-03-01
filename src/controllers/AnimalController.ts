@@ -9,17 +9,17 @@ module.exports = {
             name: z.string(),
             race: z.string(),
             type: z.string(),
-            gender: z.number(),
+            gender: z.string(),
             age: z.string(),
-            image: z.string(),
-            address: z.string(),
+            city: z.string(),
+            state: z.string(),
             userId: z.string()
         })
-        const animalInfo = animalInfoSchema.parse(req.body);
-        let animal = await prisma.animal.create({
-            data: animalInfo
-        })
-        return res.json(animal).status(200)
+        // const animalInfo = animalInfoSchema.parse(req.body);
+        // let animal = await prisma.animal.create({
+        //     data: animalInfo
+        // })
+        // return res.json(animal).status(200)
     },
 
     async delete(req: Request, res: Response){
