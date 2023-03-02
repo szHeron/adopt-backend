@@ -13,13 +13,14 @@ module.exports = {
             age: z.string(),
             city: z.string(),
             state: z.string(),
+            image: z.string(),
             userId: z.string()
         })
-        // const animalInfo = animalInfoSchema.parse(req.body);
-        // let animal = await prisma.animal.create({
-        //     data: animalInfo
-        // })
-        // return res.json(animal).status(200)
+        const animalInfo = animalInfoSchema.parse(req.body);
+        let animal = await prisma.animal.create({
+            data: animalInfo
+        })
+        return res.json(animal).status(200)
     },
 
     async delete(req: Request, res: Response){
@@ -54,7 +55,7 @@ module.exports = {
             const name = typeof req.query.name === "string"?req.query.name:undefined
             const age =  typeof req.query.age === "string"?req.query.age:undefined
             const type =  typeof req.query.type === "string"?req.query.type:undefined
-            const gender =  typeof req.query.gender === "string"?Number(req.query.gender):undefined
+            const gender =  typeof req.query.gender === "string"?req.query.gender:undefined
 
             animals = await prisma.animal.findMany({
                 where: {

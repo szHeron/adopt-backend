@@ -1,10 +1,13 @@
 import express from 'express';
 const routes = express.Router();
+const multer = require('multer');
 const UserController = require('./controllers/UserController')
 const AnimalController = require('./controllers/AnimalController')
 const FavoriteController = require('./controllers/FavoriteController')
 const tokenController = require('./controllers/VerifyToken')
 const imageController = require('./controllers/ImageController')
+
+const upload = multer();
 
 //Controladores de usuario
 routes.get('/users/:id', tokenController.verifyToken, UserController.getUser);
@@ -22,6 +25,6 @@ routes.post('/favorite', tokenController.verifyToken, FavoriteController.create)
 routes.delete('/favorite/:id', tokenController.verifyToken, FavoriteController.delete);
 routes.get('/favorite', tokenController.verifyToken, FavoriteController.getFavorites);
 
-routes.post('/uploadImage', tokenController.verifyToken, imageController.uploadNewImage);
+routes.post('/uploadImage', upload.single('photo'), imageController.uploadNewImage);
 
 module.exports = routes;
