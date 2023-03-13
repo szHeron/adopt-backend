@@ -68,7 +68,7 @@ Esse projeto foi desenvolvido com o intuito de aprender mais sobre manipulação
 
 ## 🔖 Layout
 
-Você pode visualizar o layout do projeto através do link abaixo:
+Você pode visualizar o layout base do projeto através do figma no link abaixo:
 
 - [Layout](https://www.figma.com/file/5a1y7Pdo6m9tB3PKf43w8c/Untitled?node-id=0%3A1&t=3e6SMVs8VUFaFi3i-1) 
 
